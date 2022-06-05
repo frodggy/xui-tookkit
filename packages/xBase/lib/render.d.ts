@@ -1,1 +1,1 @@
-export default function render(component: any, target: Document): Promise<void>;
+export default function render(element: HTMLElement, container: Document): void;

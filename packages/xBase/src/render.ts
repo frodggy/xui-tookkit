@@ -1,8 +1,10 @@
 // create a render function that takes a component and a target element
 // render the component into the target element
 
-export default async function render(component: any, target: Document) {
-    let comp = document.createElement("div");
-    comp.innerHTML = component
-    target.append(comp)
+
+
+export default function render(element: HTMLElement, container: Document) {
+    process.stdout.write(element.innerHTML)
+    container.append(element.innerHTML);
 }
+

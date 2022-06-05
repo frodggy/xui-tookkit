@@ -2,14 +2,14 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const buildPath = path.resolve(__dirname, '.xui/output/dist');
+const buildPath = path.resolve(__dirname, './output/dist');
 
 module.exports = {
-    entry: './.xui/build/index.js',
-    // output: {
-    //     filename: '[name].[hash:20].js',
-    //     path: buildPath
-    // },
+    entry: './.xui/output/build/index.js',
+    output: {
+        filename: 'app.js',
+        path: buildPath
+    },
     module: {
         rules: [
             {
@@ -24,7 +24,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './index.html',
+            template: './.xui/index.html',
             // Inject the js bundle at the end of the body of the given template
             inject: 'body',
         })

@@ -1,13 +1,8 @@
 {
     "plugins": [
-        [
-            "@babel/plugin-transform-react-jsx",
-            {
-            //   "throwIfNamespace": false, // defaults to true
-            //   "runtime": "automatic", // defaults to classic
-              "pragma": "createElment", // defaults to "React.createElement"
-              "importSource": "../lib/nsx.js" // defaults to react
-            }
-        ]
+      ["@babel/plugin-transform-react-jsx", {
+        "pragma": "xui.nsx", // default pragma is React.createElement
+        "throwIfNamespace": false // defaults to true
+      }]
     ]
-}
+  }
