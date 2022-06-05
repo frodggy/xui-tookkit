@@ -1,9 +1,6 @@
 const xui = require('../../../../lib/index').default;
 
-const app = require('./app');
+const app = require('./app'); // xui.render(app(), );
 
-async function main() {
-  xui.render(app(), document.getElementById('app'));
-}
 
-main();
+document.getElementById('app').appendChild(app());
