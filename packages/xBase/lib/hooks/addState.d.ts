@@ -1,7 +1,12 @@
-declare class state {
-    value: any;
-    constructor(initialState: any);
-    update(newState: any): void;
+interface StoreOptions {
+    initialState: Object;
 }
-export default function addState(initialState: any): state;
+export default class createStore {
+    state: Object;
+    constructor(options: StoreOptions);
+    setState(newState: Object, ParentElement?: HTMLElement): void;
+    getState(): Object;
+    getStateByKey(key: string, state: any): any;
+    setStateByKey(key: string, value: any, state: any): any;
+}
 export {};

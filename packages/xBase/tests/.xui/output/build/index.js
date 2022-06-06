@@ -1,6 +1,7 @@
 const xui = require('../../../../lib/index').default;
 
-const app = require('./app'); // xui.render(app(), );
+const App = require('./app');
 
-
-document.getElementById('app').appendChild(app());
+xui.render(xui.nsx(App, {
+  count: 0
+}), document.getElementById('app'));

@@ -1,10 +1,42 @@
-// create a render function that takes a component and a target element
-// render the component into the target element
+// file: src/qnd-react-dom.js
+import * as snabbdom from 'snabbdom-ts';
+import { PropsModule } from 'snabbdom-ts/modules/props';
+import { EventListenerModule  } from 'snabbdom-ts/modules/eventlisteners';
+import QndReact from './nsx';
 
+// propsModule -> this helps in patching text attributes
+// eventlistenersModule -> this helps in patching event attributes
+const reconcile = snabbdom.init([PropsModule, EventListenerModule]);
+// we need to maintain the latest rootVNode returned by render
+let rootVNode: any | null = null;
 
+// React.render(<App />, document.getElementById('root'));
+// el -> <App />
+// rootDomElement -> document.getElementById('root')
+const render = (el: any, rootDomElement: any) => {
+  // logic to put el into the rootDomElement
+  // ie. QndReactDom.render(<App />, document.getElementById('root'));
+  // happens when we call render for the first time
+  if (rootVNode == null) {
+    rootVNode = rootDomElement;
+  }
 
-export default function render(element: HTMLElement, container: Document) {
-    process.stdout.write(element.innerHTML)
-    container.append(element.innerHTML);
+  // remember the VNode that reconcile returns
+  rootVNode = reconcile(rootVNode, el);
 }
 
+// QndReactDom telling React how to update DOM
+export let __updater = (componentInstance: any) => {
+  // logic on how to update the DOM when you call this.setState
+
+  // get the oldVNode stored in __vNode
+  const oldVNode = componentInstance.__vNode;
+  // find the updated DOM node by calling the render method
+  const newVNode = componentInstance.render();
+
+  // update the __vNode property with updated __vNode
+  componentInstance.__vNode = reconcile(oldVNode, newVNode);
+}
+
+// to be exported like ReactDom.render
+export default render;

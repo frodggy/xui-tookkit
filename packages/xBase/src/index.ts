@@ -1,11 +1,12 @@
 import nsx from "./nsx";
 import render from "./render";
-import addState from "./hooks/addState";
+import createStore from "./hooks/addState";
+import { Component } from "./component";
 
 const xui = {
     nsx,
     render,
-    addState
+    createStore,
+    Component,
 }
-
 export default xui;

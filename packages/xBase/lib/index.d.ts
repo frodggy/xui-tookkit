@@ -1,8 +1,9 @@
-import render from "./render";
-import addState from "./hooks/addState";
+import createStore from "./hooks/addState";
+import { Component } from "./component";
 declare const xui: {
-    nsx: (tag: string, props: object, ...children: Node[]) => HTMLElement;
-    render: typeof render;
-    addState: typeof addState;
+    nsx: (type: any, props: any, ...children: any[]) => any;
+    render: (el: any, rootDomElement: any) => void;
+    createStore: typeof createStore;
+    Component: typeof Component;
 };
 export default xui;
